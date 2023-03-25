@@ -5,10 +5,10 @@ annotations to a unified representation, so that they can be used for composite 
 
 import json, random
 
-PATH_TO_COCO_ANNOTATIONS = "./data/coco/annotations/person_keypoints_train2017.json"
-PATH_TO_AIC_ANNOTATIONS = "./data/aic/annotations/aic_train.json"
-PATH_TO_COCO_OUT_ANNOTATIONS = "./coco_composite_train.json"
-PATH_TO_AIC_OUT_ANNOTATIONS = "./aic_composite_train.json"
+PATH_TO_COCO_ANNOTATIONS = "./data/coco/annotations/person_keypoints_val2017.json"
+PATH_TO_AIC_ANNOTATIONS = "./data/aic/annotations/aic_val.json"
+PATH_TO_COCO_OUT_ANNOTATIONS = "./data/composite/annotations/coco_composite_val.json"
+PATH_TO_AIC_OUT_ANNOTATIONS = "./data/composite/annotations/aic_composite_val.json"
 SAMPLES_PER_DATASET = 50000
 
 print("Mutator script started")
@@ -33,11 +33,16 @@ print ("Coco's zero keypoint labels removed")
 
 # Step 1.3: Sample data
 coco_composite = coco_original
-coco_composite["annotations"] = random.sample(coco_composite["annotations"], SAMPLES_PER_DATASET)
+if len(coco_composite["annotations"]) > SAMPLES_PER_DATASET:
+    random.seed(0)  # ensure the same annotations are sampled for comparison datasets
+    coco_composite["annotations"] = random.sample(coco_composite["annotations"], SAMPLES_PER_DATASET)
 aic_composite = aic_original
-aic_composite["annotations"] = random.sample(aic_original["annotations"], SAMPLES_PER_DATASET)
+if len(aic_composite["annotations"]) > SAMPLES_PER_DATASET:
+    random.seed(0)
+    aic_composite["annotations"] = random.sample(aic_original["annotations"], SAMPLES_PER_DATASET)
 
 print("Original data sampled")
+
 
 # Step 1.4: Filter out image details of unreferenced images
 referenced_image_ids = []
@@ -61,6 +66,7 @@ for image_detail in aic_composite["images"]:
 aic_composite["images"] = referenced_images
 
 print("Image details filtered")
+
 
 # Bonus step: Delete unused segmentation info
 for annotation in coco_composite["annotations"]:
