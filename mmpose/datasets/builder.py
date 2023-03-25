@@ -10,7 +10,6 @@ from mmcv.parallel import collate
 from mmcv.runner import get_dist_info
 from mmcv.utils import Registry, build_from_cfg, is_seq_of
 from mmcv.utils.parrots_wrapper import _get_dataloader
-from torch.utils.data.dataset import ConcatDataset
 
 from .samplers import DistributedSampler
 
@@ -28,6 +27,7 @@ PIPELINES = Registry('pipeline')
 
 
 def _concat_dataset(cfg, default_args=None):
+    from .dataset_wrappers import ConcatDataset
     types = cfg['type']
     ann_files = cfg['ann_file']
     img_prefixes = cfg.get('img_prefix', None)
@@ -71,13 +71,14 @@ def build_dataset(cfg, default_args=None):
     Returns:
         Dataset: The constructed dataset.
     """
-    from .dataset_wrappers import RepeatDataset
+    from .dataset_wrappers import ConcatDataset, RepeatDataset
 
     if isinstance(cfg, (list, tuple)):
         dataset = ConcatDataset([build_dataset(c, default_args) for c in cfg])
     elif cfg['type'] == 'ConcatDataset':
         dataset = ConcatDataset(
-            [build_dataset(c, default_args) for c in cfg['datasets']])
+            [build_dataset(c, default_args) for c in cfg['datasets']],
+            cfg.get('separate_eval', True))
     elif cfg['type'] == 'RepeatDataset':
         dataset = RepeatDataset(
             build_dataset(cfg['dataset'], default_args), cfg['times'])
