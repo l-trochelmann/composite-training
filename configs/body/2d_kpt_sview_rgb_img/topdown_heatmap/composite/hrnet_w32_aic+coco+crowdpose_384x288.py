@@ -1,8 +1,8 @@
 _base_ = [
     '../../../../_base_/default_runtime.py',
-    '../../../../_base_/datasets/aic.py'
+    '../../../../_base_/datasets/composite.py'
 ]
-evaluation = dict(interval=10, metric='mAP', save_best='AP')
+evaluation = dict(interval=5, metric='mAP', save_best='AP')
 
 optimizer = dict(
     type='Adam',
@@ -18,17 +18,17 @@ lr_config = dict(
     step=[170, 200])
 total_epochs = 210
 channel_cfg = dict(
-    num_output_channels=14,
-    dataset_joints=14,
+    num_output_channels=19,
+    dataset_joints=19,
     dataset_channel=[
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     ],
-    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
+    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
 
 # model settings
 model = dict(
     type='TopDown',
-    pretrained='https://download.openmmlab.com/mmpose/'
+    pretrained='https://download.openmmlab.com/mmpose/'  # This link isn't correct, but not providing a link here will cause an error.
     'pretrain_models/hrnet_w32-36af842e.pth',
     backbone=dict(
         type='HRNet',
@@ -76,6 +76,8 @@ model = dict(
 data_cfg = dict(
     image_size=[288, 384],
     heatmap_size=[72, 96],
+    #image_size=[192, 256],
+    #heatmap_size=[48, 64],
     num_output_channels=channel_cfg['num_output_channels'],
     num_joints=channel_cfg['dataset_joints'],
     dataset_channel=channel_cfg['dataset_channel'],
@@ -86,7 +88,7 @@ data_cfg = dict(
     vis_thr=0.2,
     use_gt_bbox=True,
     det_bbox_thr=0.0,
-    bbox_file='data/person_detection_results/'
+    bbox_file='data/coco/person_detection_results/'
     'COCO_val2017_detections_AP_H_56_person.json',
 )
 
@@ -143,27 +145,40 @@ data = dict(
     workers_per_gpu=2,
     val_dataloader=dict(samples_per_gpu=8),
     test_dataloader=dict(samples_per_gpu=8),
-    train=dict(
-        type='TopDownAicDataset',
-        ann_file=f'{data_root}/composite/annotations/aic_comparison_train.json',
+    train=[dict(
+        type='TopDownCompositeDataset',
+        ann_file=f'{data_root}/composite/annotations/aic_composite_train.json',
         img_prefix=f'{data_root}/aic/ai_challenger_keypoint_train_20170902/'
         'keypoint_train_images_20170902/',
         data_cfg=data_cfg,
         pipeline=train_pipeline,
         dataset_info={{_base_.dataset_info}}),
+        dict(
+        type='TopDownCompositeDataset',
+        ann_file=f'{data_root}/composite/annotations/coco_composite_train.json',
+        img_prefix=f'{data_root}/coco/train2017/',
+        data_cfg=data_cfg,
+        pipeline=train_pipeline,
+        dataset_info={{_base_.dataset_info}}),
+        dict(
+        type='TopDownCompositeDataset',
+        ann_file=f'{data_root}/composite/annotations/crowdpose_composite_train.json',
+        img_prefix=f'{data_root}/crowdpose/images/',
+        data_cfg=data_cfg,
+        pipeline=train_pipeline,
+        dataset_info={{_base_.dataset_info}})],
     val=dict(
-        type='TopDownAicDataset',
-        ann_file=f'{data_root}/composite/annotations/aic_comparison_val.json',
-        img_prefix=f'{data_root}/aic/ai_challenger_keypoint_validation_20170911/'
-        'keypoint_validation_images_20170911/',
+        type='TopDownCompositeDataset',
+        ann_file=f'{data_root}/composite/annotations/coco_composite_val.json',
+        img_prefix=f'{data_root}/coco/val2017/',
         data_cfg=data_cfg,
         pipeline=val_pipeline,
         dataset_info={{_base_.dataset_info}}),
     test=dict(
-        type='TopDownAicDataset',
-        ann_file=f'{data_root}/composite/annotations/aic_comparison_val.json',
-        img_prefix=f'{data_root}/ai_challenger_keypoint_validation_20170911/'
-        'keypoint_validation_images_20170911/',
+        type='TopDownCompositeDataset',
+        ann_file=f'{data_root}/composite/annotations/coco_composite_val.json',
+        img_prefix=f'{data_root}/coco/val2017/',
         data_cfg=data_cfg,
-        pipeline=test_pipeline,
-        dataset_info={{_base_.dataset_info}}))
+        pipeline=val_pipeline,
+        dataset_info={{_base_.dataset_info}})
+)
