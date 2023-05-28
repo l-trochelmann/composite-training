@@ -2,7 +2,7 @@ _base_ = [
     '../../../../_base_/default_runtime.py',
     '../../../../_base_/datasets/composite.py'
 ]
-evaluation = dict(interval=5, metric='mAP', save_best='AP')
+evaluation = dict(interval=10, metric='mAP', save_best='AP')
 
 optimizer = dict(
     type='Adam',
@@ -76,8 +76,6 @@ model = dict(
 data_cfg = dict(
     image_size=[288, 384],
     heatmap_size=[72, 96],
-    #image_size=[192, 256],
-    #heatmap_size=[48, 64],
     num_output_channels=channel_cfg['num_output_channels'],
     num_joints=channel_cfg['dataset_joints'],
     dataset_channel=channel_cfg['dataset_channel'],
@@ -179,6 +177,6 @@ data = dict(
         ann_file=f'{data_root}/composite/annotations/coco_composite_val.json',
         img_prefix=f'{data_root}/coco/val2017/',
         data_cfg=data_cfg,
-        pipeline=val_pipeline,
+        pipeline=test_pipeline,
         dataset_info={{_base_.dataset_info}})
 )
