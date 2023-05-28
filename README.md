@@ -44,7 +44,7 @@ In order to define a new unified representation for new composite datasets, foll
 7. In `data`: Set the used dicts to match your new composite. Each dict represent one dataset. When the `train` field receives a list of dicts, it then concatenates them to a composite dataset.
 
 ## Acknowledgement
-This project may have not been possible without the efforts of the MMPose ccontributors.
+This project may have not been possible without the efforts of the MMPose contributors.
 The author extends his gratitude.
 
 ## License
