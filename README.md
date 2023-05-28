@@ -20,6 +20,7 @@ This will yield a model trained on the given composite dataset.
 
 ## Evaluation
 To evaluate the composite-trained model, repeat the same steps as during training, but converting the validation annotations and evaluating with the same config.
+
 If you wish to evaluate on specific keypoints and sigmas, you need to manipulate one of the dependencies:
 
 In `(path-to-your-python)/python3.8/site-packages/xtcocotools/cocoeval.py`, in `computeOks`:
