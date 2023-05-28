@@ -37,7 +37,7 @@ Please read and understand the following basic MMPose tutorials before creating 
 In order to define a new unified representation for new composite datasets, follow these steps:
 1. Convert your annotations to your new representation, and to the general COCO dataset format.
 2. Define a new `composite.py` file in `configs/_base_/` matching your representation.
-3. Create a new config in `configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/composite` or alter an existing one.
+3. Create a new config in `configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/composite` or (recommended) alter an existing one.
 4. In `_base_`: use `composite.py`
 5. In `channel_cfg`: match the number of channels to your representation
 6. In `data_cfg`: Set `use_gt_bbox=True`
