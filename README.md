@@ -6,7 +6,7 @@ The project was implemented as a fork of the MMPose toolkit for human pose detec
 
 For general information on this version of MMPose, please refer to: https://github.com/open-mmlab/mmpose/tree/0.x
 
-To download the full evaluation results please refer to: https://drive.google.com/drive/folders/1P4PMb_HLkrSuiyxAozG_RIbaw9L6bM0z
+To download the full evaluation results, please refer to: https://drive.google.com/drive/folders/1P4PMb_HLkrSuiyxAozG_RIbaw9L6bM0z
 
 ## Installation
 To execute composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md, but clone this repository rather than the original.
