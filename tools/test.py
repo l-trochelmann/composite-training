@@ -99,7 +99,7 @@ def main():
     if cfg.get('cudnn_benchmark', False):
         torch.backends.cudnn.benchmark = True
     cfg.model.pretrained = None
-    cfg.data.test.test_mode = True
+    # cfg.data.test.test_mode = True
 
     # work_dir is determined in this priority: CLI > segment in file > filename
     if args.work_dir is not None:
@@ -174,7 +174,6 @@ def main():
         if args.out:
             print(f'\nwriting results to {args.out}')
             mmcv.dump(outputs, args.out)
-
         results = dataset.evaluate(outputs, cfg.work_dir, **eval_config)
         for k, v in sorted(results.items()):
             print(f'{k}: {v}')
