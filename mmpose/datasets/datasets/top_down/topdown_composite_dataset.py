@@ -10,28 +10,8 @@ from .topdown_coco_dataset import TopDownCocoDataset
 
 @DATASETS.register_module()
 class TopDownCompositeDataset(TopDownCocoDataset):
-    """dataset for top-down pose estimation.
-
-    : , arXiv'.
-    More details can be found in the `paper
-    <>`__
-
-    The dataset loads raw features and apply specified transforms
-    to return a dict containing the image tensors and other information.
-
-     keypoint indexes::
-
-        
-
-    Args:
-        ann_file (str): Path to the annotation file.
-        img_prefix (str): Path to a directory where images are held.
-            Default: None.
-        data_cfg (dict): config
-        pipeline (list[dict | callable]): A sequence of data transforms.
-        dataset_info (DatasetInfo): A class containing all dataset info.
-        test_mode (bool): Store True when building test or
-            validation dataset. Default: False.
+    """
+    altered version of topdown_aic_dataset.py to accomodate composite datasets
     """
 
     def __init__(self,
