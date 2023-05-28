@@ -9,7 +9,7 @@ For general information on this version of MMPose, please refer to: https://gith
 To download the full evaluation results, please refer to: https://drive.google.com/drive/folders/1P4PMb_HLkrSuiyxAozG_RIbaw9L6bM0z
 
 ## Installation
-To execute composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md, but clone this repository rather than the original.
+To work with composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md, but clone this repository rather than the original.
 
 ## Training
 This project presents a method to create composite datasets by defining a unified representation. This is implemented through a change to the annotations and the MMPose dataset configurations. This repository includes the tools needed to create a composite dataset from AIC, COCO and Crowdpose data. It also includes the required configs.
