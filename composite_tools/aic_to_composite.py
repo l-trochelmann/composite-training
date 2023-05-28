@@ -11,7 +11,7 @@ import json, random
 
 PATH_TO_AIC_ANNOTATIONS = "./data/aic/annotations/aic_train.json"
 PATH_TO_COMPOSITE_OUTPUT = "./data/composite/annotations/aic_composite_train.json"
-SAMPLES_PER_DATASET = 50000
+SAMPLES_PER_DATASET = 500000
 
 
 # Data preparation
@@ -92,7 +92,7 @@ with
 """
 
 
-print("Saving results to JSON...")
 # Step 4: Save new mini datasets to storage
+print("Saving results to JSON...")
 with open(PATH_TO_COMPOSITE_OUTPUT, "w") as aic_composite_json:
     json.dump(aic_composite, aic_composite_json)

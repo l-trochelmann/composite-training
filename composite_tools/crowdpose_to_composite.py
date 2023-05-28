@@ -1,6 +1,6 @@
 """
 This script samples a mini dataset from Crowdpose and mutates its annotations.
-The original keypoint representaiton is replaced with a unified representation including all AIC and COCO keypoints. 
+The original keypoint representaiton is replaced with a unified representation including all AIC/Crowdpose and COCO keypoints. 
 The resulting annotations can then be used for training together with others sharing the same representation.
 It operates on one json file at a time, and thus needs to be executed separately for train and val data.
 The size of the mini dataset can be set via SAMPLES_PER_DATASET.
@@ -9,9 +9,9 @@ If SAMPLES_PER_DATASET exceeds actual dataset size, sampling does not occur.
 
 import json, random
 
-PATH_TO_CROWDPOSE_ANNOTATIONS = "./data/crowdpose/annotations/mmpose_crowdpose_test.json"
-PATH_TO_COMPOSITE_OUTPUT = "./data/composite/annotations/crowdpose_composite_val.json"
-SAMPLES_PER_DATASET = 50000
+PATH_TO_CROWDPOSE_ANNOTATIONS = "./data/crowdpose/annotations/mmpose_crowdpose_train.json"
+PATH_TO_COMPOSITE_OUTPUT = "./data/composite/annotations/crowdpose_composite_train.json"
+SAMPLES_PER_DATASET = 500000
 
 
 # Data preparation
@@ -19,12 +19,6 @@ SAMPLES_PER_DATASET = 50000
 print("Loading JSON data...")
 with open(PATH_TO_CROWDPOSE_ANNOTATIONS, "r") as crowdpose_json:
     crowdpose_original = json.load(crowdpose_json)
-
-
-# Filter out useless zero-keypoint annotations
-print ("Removing zero-keypoint annotations from COCO...")
-zeroes = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-crowdpose_original["annotations"] = [annotation for annotation in crowdpose_original["annotations"] if annotation["keypoints"] != zeroes]
 
 
 # Sample data
@@ -98,7 +92,7 @@ with
 """
 
 
-print("Saving results to JSON...")
 # Step 4: Save new mini datasets to storage
+print("Saving results to JSON...")
 with open(PATH_TO_COMPOSITE_OUTPUT, "w") as crowdpose_composite_json:
     json.dump(crowdpose_composite, crowdpose_composite_json)

@@ -9,9 +9,9 @@ If SAMPLES_PER_DATASET exceeds actual dataset size, sampling does not occur.
 
 import json, random
 
-PATH_TO_COCO_ANNOTATIONS = "./data/coco/annotations/person_keypoints_val2017.json"
-PATH_TO_COMPOSITE_OUTPUT = "./data/composite/annotations/coco_composite_val.json"
-SAMPLES_PER_DATASET = 50000
+PATH_TO_COCO_ANNOTATIONS = "./data/coco/annotations/person_keypoints_train2017.json"
+PATH_TO_COMPOSITE_OUTPUT = "./data/composite/annotations/coco_composite_train.json"
+SAMPLES_PER_DATASET = 500000
 
 
 # Data preparation
@@ -105,7 +105,7 @@ with
 """
 
 
-print("Saving results to JSON...")
 # Step 4: Save new mini datasets to storage
+print("Saving results to JSON...")
 with open(PATH_TO_COMPOSITE_OUTPUT, "w") as coco_composite_json:
     json.dump(coco_composite, coco_composite_json)
