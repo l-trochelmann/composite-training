@@ -29,7 +29,7 @@ In `(path-to-your-python)/python3.8/site-packages/xtcocotools/cocoeval.py`, in `
 
 The given example evaluates COCO-style head keypoints with COCO head sigmas.
 
-Please note that it is highly recommended to always work on the same unified representation, even if working with comparison models that don't predict certain keypoints. This allows for the skipping of additional remapping steps.
+Please note that it is highly recommended to always work on the same unified representation, even if working with comparison models that don't learn to properly predict certain keypoints. This allows for the skipping of additional remapping steps.
 
 ## Defining Your Own
 Please read and understand the following basic MMPose tutorials before creating new composites: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/tutorials/0_config.md, https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/tutorials/2_new_dataset.md.
