@@ -7,9 +7,10 @@ dataset_info = dict(
         title='Composite Dataset Training for Improved Pose Detection in the Wild',
         container='',
         year='2023',
-        homepage='',
+        homepage='https://github.com/l-trochelmann/composite-training',
     ),
 
+    # keypoints obtained as the union between AIC/Crowdpose and COCO keypoints
     keypoint_info = {
         0: dict(
             name='head_top',
@@ -157,8 +158,8 @@ dataset_info = dict(
 
     joint_weights=[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.2, 1.2, 1.5, 1.5, 1., 1., 1.2, 1.2, 1.5, 1.5],
 
-    # sigmas created by calculating from AIC and COCO sigmas
-    # necessary for eval during composite training but not recommended to use for conclusions
+    # sigmas calculating from AIC and COCO sigmas
+    # necessary to allow for naive eval using mAP during training of a composite model, but not recommended to use for conclusions
     sigmas=[0.01291456, 0.025, 0.025, 0.035, 0.035, 0.026, 0.01236173, 0.0421436598093409, 0.04210130459424179, 
     0.036182338706306494, 0.036422573620422026, 0.030655928110977716, 0.02977796138264048, 0.06210660926448471, 
     0.06244901144807664, 0.05015083471299594, 0.05167741980833102, 0.045610413654848594, 0.043919830609138295])
