@@ -19,7 +19,7 @@ To train a model on such a composite dataset, execute two steps:
 This will yield a model trained on the given composite dataset.
 
 ## Evaluation
-To evaluate the composite-trained model, repeat the same steps as during training, but converting the validation annotations and evaluating with the same config.
+To evaluate the composite-trained model, repeat the same steps as during training, but converting the validation annotations and evaluating with the same config. To evaluate on a different validation set, alter the validation set referenced in the config.
 
 If you wish to evaluate on specific keypoints and sigmas, you need to manipulate one of the dependencies:
 
