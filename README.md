@@ -41,7 +41,7 @@ Please note that it is highly recommended to always work on the same unified rep
 Please read and understand the following basic MMPose tutorials before creating new composites: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/tutorials/0_config.md, https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/tutorials/2_new_dataset.md.
 
 In order to define a new unified representation for new composite datasets, follow these steps:
-1. Convert your annotations to your new representation, and to the general COCO dataset format.
+1. Convert your annotations to your new representation, and to the general COCO dataset format, following the steps outlined in the `composite_tools/` scripts.
 2. Define a new `composite.py` file in `configs/_base_/` matching your representation.
 3. Create a new config in `configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/composite` or (recommended) alter an existing one.
 4. In `_base_`: Use `composite.py`
