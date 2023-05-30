@@ -29,9 +29,9 @@ In `(path-to-your-python)/python3.8/site-packages/xtcocotools/cocoeval.py`, in `
 The given example evaluates COCO-style head keypoints with COCO head sigmas.
 
 Sigmas of an individual dataset can be found in `configs/_base_/datasets/`. The remapped sigmas for body keypoints of AIC, COCO and Crowdpose to the unified representation are as follows:
-- AIC: [X, X, X, X, X, X, X, 0.01417709, 0.01388152, 0.01497891, 0.01515228, 0.01402144, 0.01057665, 0.03843971, 0.03909642, 0.03412318, 0.03686941, 0.02415081, 0.01981803]
-- COCO: [X, X, X, X, X, X, X, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087, 0.087, 0.089, 0.089]
-- Crowdpose: [X, X, X, X, X, X, X, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087, 0.087, 0.089, 0.089]
+- AIC: `[X, X, X, X, X, X, X, 0.01417709, 0.01388152, 0.01497891, 0.01515228, 0.01402144, 0.01057665, 0.03843971, 0.03909642, 0.03412318, 0.03686941, 0.02415081, 0.01981803]`
+- COCO: `[X, X, X, X, X, X, X, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087, 0.087, 0.089, 0.089]`
+- Crowdpose: `[X, X, X, X, X, X, X, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087, 0.087, 0.089, 0.089]`
 
 with X denoting the sigma of a head keypoint.
 
