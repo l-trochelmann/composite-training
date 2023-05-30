@@ -18,7 +18,7 @@ To train a model on such a composite dataset, execute two steps:
 2. Train with one of the configs in `configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/composite` as you would any other MMPose config. This will yield a model trained on the given composite dataset.
 
 ## Evaluation
-To evaluate the composite-trained model, repeat the same steps as during training, but converting the validation annotations and evaluating with the same config. To evaluate on a different validation set, alter the validation set referenced in the config.
+To evaluate the composite-trained model, repeat the same steps as during training, but converting the validation annotations and evaluating with the same config used for training. To evaluate on a different validation set, alter the validation set referenced in the config.
 
 If you wish to evaluate on specific keypoints and sigmas, you need to manipulate one of the dependencies:
 
