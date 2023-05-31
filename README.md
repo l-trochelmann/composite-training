@@ -9,7 +9,7 @@ For general information on this version of MMPose, please refer to: https://gith
 To download the full evaluation results, please refer to: https://drive.google.com/drive/folders/1P4PMb_HLkrSuiyxAozG_RIbaw9L6bM0z
 
 ## Installation
-To work with composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md. During the installation, clone this repository rather than the original. Please use version 0.3.3 of [MIM](https://github.com/open-mmlab/mim), version 1.7.0 of [MMCV](https://github.com/open-mmlab/mmcv) and  version 2.28.2 of [MMDET](https://github.com/open-mmlab/mmdetection) (should you wish to use MMDET).
+To work with composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md. During the installation, clone this repository rather than the original. Please use version 0.3.3 of [MIM](https://github.com/open-mmlab/mim), version 1.7.0 of [MMCV](https://github.com/open-mmlab/mmcv) and  version 2.28.2 of [MMDET](https://github.com/open-mmlab/mmdetection) (should you wish to use MMDET). If you wish to evaluate on unlabelled data, please do install MMDET as a dependency.
 
 For the installation and preparation of datasets, please refer to: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/tasks/2d_body_keypoint.md
 
@@ -55,6 +55,7 @@ In order to define and use a new unified representation for new composite datase
 The following changes to MMPose were necessary to accomodate composite dataset training:
 - in `mmpose/datasets/datasets/top_down/` a new dataset type "TopDownCompositeDataset" had to be defined.
 - in `configs/_base_/datasets/` and `configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/composite/` new configs had to be defined.
+- in `composite_tools/` scripts were implemented to change the original datasets' annotations to the composite style (and sample from them for specific volumes).
 - in `mmpose/datasets/datasets/`, to accomodate evaluation on multiple datasets at once, a fix was implemented  in `dataset_wrappers.py` and `builder.py` ([more](https://github.com/open-mmlab/mmpose/pull/1932)).
 - in `tools/` a legacy mistake in `test.py` had to be corrected (L. 102).
 - as mentioned previously for evaluation, a dependency needs to be manipulated to accomodate evaluation on specific keypoints.
