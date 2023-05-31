@@ -2,14 +2,14 @@
 
 ## About
 This is the complementary Git repository for the bachelor thesis [Composite Dataset Training for Improved Pose Detection in the Wild](https://drive.google.com/file/d/1xUniwrnlelJNW2X7cMq2CmSjTXZ77Z_z) by Leon Trochelmann.
-The project was implemented as a fork of the MMPose toolkit for human pose detection, version 0.x.
+The project was implemented as a fork of the MMPose toolkit for human pose detection, version 0.29.0.
 
 For general information on this version of MMPose, please refer to: https://github.com/open-mmlab/mmpose/tree/0.x
 
 To download the full evaluation results, please refer to: https://drive.google.com/drive/folders/1P4PMb_HLkrSuiyxAozG_RIbaw9L6bM0z
 
 ## Installation
-To work with composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md, but clone this repository rather than the original.
+To work with composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md. During the installation, clone this repository rather than the original. Please use version 0.3.3 of [MIM](https://github.com/open-mmlab/mim), version 1.7.0 of [MMCV](https://github.com/open-mmlab/mmcv) and  version 2.28.2 of [MMDET](https://github.com/open-mmlab/mmdetection) (should you wish to use MMDET).
 
 ## Training
 This project presents a method to create composite datasets by defining a unified representation. This is implemented through a change to the annotations and the MMPose dataset configurations. This repository includes the tools needed to create a composite dataset from AIC, COCO and Crowdpose data. It also includes the required configs.
