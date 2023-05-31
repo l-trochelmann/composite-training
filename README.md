@@ -11,6 +11,8 @@ To download the full evaluation results, please refer to: https://drive.google.c
 ## Installation
 To work with composite dataset training locally, please install MMPose: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/install.md. During the installation, clone this repository rather than the original. Please use version 0.3.3 of [MIM](https://github.com/open-mmlab/mim), version 1.7.0 of [MMCV](https://github.com/open-mmlab/mmcv) and  version 2.28.2 of [MMDET](https://github.com/open-mmlab/mmdetection) (should you wish to use MMDET).
 
+For the installation and preparation of datasets, please refer to: https://github.com/open-mmlab/mmpose/blob/0.x/docs/en/tasks/2d_body_keypoint.md
+
 ## Training
 This project presents a method to create composite datasets by defining a unified representation. This is implemented through a change to the annotations and the MMPose dataset configurations. This repository includes the tools needed to create a composite dataset from AIC, COCO and Crowdpose data. It also includes the required configs.
 To train a model on such a composite dataset, execute two steps:
