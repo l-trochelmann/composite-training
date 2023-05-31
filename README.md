@@ -44,12 +44,20 @@ Please read and understand the following basic MMPose tutorials before creating 
 
 In order to define and use a new unified representation for new composite datasets, follow these steps:
 1. Convert your annotations to your new representation, and to the general COCO dataset format, following the steps outlined in the `composite_tools/` scripts.
-2. Define a new `composite.py` file in `configs/_base_/` matching your representation.
+2. Define a new `composite.py` file in `configs/_base_/datasets/` matching your representation.
 3. Create a new config in `configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/composite` or (recommended) alter an existing one:
 - In `_base_`: Use `composite.py`.
 - In `channel_cfg`: Match the number of channels to your representation.
 - In `data_cfg`: Set `use_gt_bbox=True`.
 - In `data`: Set the used dicts to match your new composite. Each dict represent one dataset. When the `train` field receives a list of dicts, it then concatenates them to a composite dataset.
+
+## Technical Details
+The following changes to MMPose were necessary to accomodate composite dataset training:
+- in `mmpose/datasets/datasets/top_down/` a new dataset type "TopDownCompositeDataset" had to be defined.
+- in `configs/_base_/datasets/` and `configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/composite/` new configs had to be defined.
+- in `mmpose/datasets/datasets/`, to accomodate evaluation on multiple datasets at once, a fix was implemented  in `dataset_wrappers.py` and `builder.py` ([more](https://github.com/open-mmlab/mmpose/pull/1932)).
+- in `tools/` a legacy mistake in `test.py` had to be corrected (L. 102).
+- as mentioned previously for evaluation, a dependency needs to be manipulated to accomodate evaluation on specific keypoints.
 
 ## Acknowledgement
 This project may have not been possible without the efforts of the MMPose contributors.
