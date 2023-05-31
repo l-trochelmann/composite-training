@@ -2,7 +2,7 @@
 
 ## About
 This is the complementary Git repository for the bachelor thesis [Composite Dataset Training for Improved Pose Detection in the Wild](https://drive.google.com/file/d/1xUniwrnlelJNW2X7cMq2CmSjTXZ77Z_z) by Leon Trochelmann.
-The project was implemented as a fork of the MMPose toolkit for human pose detection.
+The project was implemented as a fork of the MMPose toolkit for human pose detection, version 0.x.
 
 For general information on this version of MMPose, please refer to: https://github.com/open-mmlab/mmpose/tree/0.x
 
